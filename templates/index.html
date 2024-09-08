@@ -8,7 +8,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>Upload an image to compress</h1>
+        <h1>Image Compressor</h1>
+        <p>Welcome to the Image Compressor! This tool allows you to compress your images to reduce their file size while maintaining quality.</p>
+        
+        <h2>How to Use</h2>
+        <ol>
+            <li>Click on the "Choose File" button and select an image from your device.</li>
+            <li>Click on the "Compress" button to start the compression process.</li>
+            <li>Once the compression is complete, you will see the original and compressed sizes along with the compression percentage.</li>
+            <li>Click on the "Download Compressed Image" button to download the compressed image.</li>
+        </ol>
+
+        <h2>Do's and Don'ts</h2>
+        <ul>
+            <li><strong>Do:</strong> Upload images in common formats like JPEG, PNG, etc.</li>
+            <li><strong>Do:</strong> Ensure the image size is less than {{ max_file_size / (1024 * 1024) }} MB for optimal performance.</li>
+            <li><strong>Don't:</strong> Upload excessively large images as it may cause memory issues.</li>
+            <li><strong>Don't:</strong> Upload images with sensitive or personal information.</li>
+        </ul>
+
         <form id="uploadForm" enctype="multipart/form-data">
             <input type="file" id="image" name="image" accept="image/*">
             <input type="submit" value="Compress">

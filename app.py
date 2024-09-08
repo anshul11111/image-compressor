@@ -11,12 +11,12 @@ logging.basicConfig(level=logging.DEBUG)
 # Increase the decompression bomb limit
 Image.MAX_IMAGE_PIXELS = None
 
-# Set a maximum file size limit (e.g., 5MB)
-MAX_FILE_SIZE = 5 * 1024 * 1024
+# Set a maximum file size limit (e.g., 20MB)
+MAX_FILE_SIZE = 20 * 1024 * 1024  # 20MB in bytes
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', max_file_size=MAX_FILE_SIZE)
 
 @app.route('/compress', methods=['POST'])
 def compress():
@@ -33,7 +33,7 @@ def compress():
 
     if file_size > MAX_FILE_SIZE:
         logging.error('File size exceeds limit')
-        return 'File size exceeds limit', 400
+        return f'File size exceeds limit of {MAX_FILE_SIZE / (1024 * 1024)} MB', 400
 
     img = Image.open(file.stream)
 
