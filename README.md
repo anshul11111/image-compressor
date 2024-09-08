@@ -2,7 +2,9 @@
 ```markdown
 # Image Compressor
 
-A simple web application to compress images using Flask and Pillow. Users can upload an image, compress it, and download the compressed version. The application also displays the original and compressed image sizes along with the compression percentage.
+A simple web application to compress images using Flask and Pillow.
+Users can upload an image, compress it, and download the compressed version.
+The application also displays the original and compressed image sizes along with the compression percentage.
 
 ## Features
 
