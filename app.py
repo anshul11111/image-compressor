@@ -11,6 +11,9 @@ logging.basicConfig(level=logging.DEBUG)
 # Increase the decompression bomb limit
 Image.MAX_IMAGE_PIXELS = None
 
+# Set a maximum file size limit (e.g., 5MB)
+MAX_FILE_SIZE = 5 * 1024 * 1024
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -22,33 +25,39 @@ def compress():
         return 'No image uploaded', 400
 
     file = request.files['image']
+
+    # Check file size
+    file.stream.seek(0, io.SEEK_END)
+    file_size = file.stream.tell()
+    file.stream.seek(0)  # Reset stream position
+
+    if file_size > MAX_FILE_SIZE:
+        logging.error('File size exceeds limit')
+        return 'File size exceeds limit', 400
+
     img = Image.open(file.stream)
 
     # Convert image to RGB mode if necessary
     if img.mode == 'RGBA':
         img = img.convert('RGB')
 
-    # Calculate original size
-    file.stream.seek(0, io.SEEK_END)
-    original_size = file.stream.tell()
-    file.stream.seek(0)  # Reset stream position
-    logging.debug(f'Original size: {original_size} bytes')
+    logging.debug(f'Original size: {file_size} bytes')
 
     img_io = io.BytesIO()
     img.save(img_io, 'JPEG', quality=20)
     compressed_size = img_io.tell()
     logging.debug(f'Compressed size: {compressed_size} bytes')
 
-    if original_size == 0 or compressed_size == 0:
+    if file_size == 0 or compressed_size == 0:
         logging.error('Error in calculating sizes')
         return 'Error in calculating sizes', 500
 
-    compression_percentage = 100 - (compressed_size / original_size * 100)
+    compression_percentage = 100 - (compressed_size / file_size * 100)
     logging.debug(f'Compression percentage: {compression_percentage}%')
 
     img_io.seek(0)
     return jsonify({
-        'original_size': original_size,
+        'original_size': file_size,
         'compressed_size': compressed_size,
         'compression_percentage': compression_percentage,
         'download_url': '/download'
