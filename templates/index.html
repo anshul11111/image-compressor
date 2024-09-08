@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload an image to compress</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="image" name="image" accept="image/*">
+            <input type="submit" value="Compress">
+        </form>
+        <div id="result">
+            <p id="originalSize"></p>
+            <p id="compressedSize"></p>
+            <p id="compressionPercentage"></p>
+            <button id="downloadButton" style="display: none;">Download Compressed Image</button>
+        </div>
+    </div>
+
+    <script src="static/js/scripts.js"></script>
+</body>
+</html>
