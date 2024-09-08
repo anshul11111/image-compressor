@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #ce3535;
     margin: 0;
     padding: 0;
     display: flex;
@@ -53,4 +53,8 @@ input[type="submit"]:hover {
 
 #downloadButton:hover {
     background-color: #218838;
+}
+#buttons{
+    display: flex;
+    justify-content: space-between;
 }
