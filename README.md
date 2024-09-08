@@ -1,4 +1,3 @@
-Got it! Here is the content formatted so you can easily copy and paste it directly into a `README.md` file:
 
 ```markdown
 # Image Compressor
@@ -92,13 +91,3 @@ image-compressor/
 └── README.md
 ```
 
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-```
-
-You can now copy and paste the above content directly into your `README.md` file.
