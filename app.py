@@ -8,6 +8,9 @@ app = Flask(__name__)
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 
+# Increase the decompression bomb limit
+Image.MAX_IMAGE_PIXELS = None
+
 @app.route('/')
 def index():
     return render_template('index.html')
